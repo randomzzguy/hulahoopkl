@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hulahoop | Creative Marketing</title>
+    <title>Welcome to Hulahoop | Choose Your Journey</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -45,51 +45,45 @@
             background-color: var(--dark);
             color: #e2e8f0;
             font-family: 'Inter', sans-serif;
-        }
-
-        .logoNav {
-            width: 100%;
-            max-width: 200px;
-            height: 60px;
-            margin-right: 10px;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
         .logo {
             width: 100%;
-            max-width: 600px;
-            height: 300px;
-            margin-right: 10px;
-            animation: neon-glow 2s infinite alternate;
+            max-width: 500px;
+            height: 250px;
+            animation: neon-glow 3s infinite alternate, float 6s ease-in-out infinite;
         }
 
-        .svg-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background: transparent;
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        /* SVG styling */
-        #hh-logo {
-        width: 650px;
-        height: 650px;
-        transition: transform 0.1s ease;
-        transform-style: preserve-3d;
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: particleFloat 8s infinite linear;
         }
 
-        /* Hover effect with shadow */
-        #hh-logo:hover {
-        filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.3));
+        .particle:nth-child(2n) {
+            background: var(--secondary);
+            animation-duration: 10s;
         }
 
-        .neon-accent {
-            box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
-            transition: box-shadow 0.3s ease;
-        }
-
-        .neon-accent:hover {
-            box-shadow: 0 0 15px rgba(99, 102, 241, 0.7);
+        .particle:nth-child(3n) {
+            background: var(--accent);
+            animation-duration: 12s;
         }
 
         .neon-text {
@@ -101,50 +95,57 @@
             text-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
         }
 
-        .gradient-btn {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: white;
+        .service-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.4s ease;
             position: relative;
-            z-index: 1;
-            transition: all 0.3s ease;
+            overflow: hidden;
         }
 
-        .gradient-btn:hover {
-            box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
-        }
-
-        .gradient-btn::before {
+        .service-card::before {
             content: '';
             position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            border-radius: inherit;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+            transition: left 0.6s ease;
         }
 
-        .gradient-btn:hover::before {
-            opacity: 1;
+        .service-card:hover::before {
+            left: 100%;
         }
 
-        .hover-card {
-            border: 1px solid rgba(99, 102, 241, 0.1);
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+            border-color: rgba(99, 102, 241, 0.5);
+        }
+
+        .service-card.active {
+            cursor: pointer;
+        }
+
+        .service-card.inactive {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .service-card.inactive:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: rgba(99, 102, 241, 0.2);
+        }
+
+        .service-icon {
             transition: all 0.3s ease;
         }
 
-        .hover-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
-            border-color: rgba(99, 102, 241, 0.3);
-        }
-
-        .gradient-divider {
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-            margin: 2rem auto;
-            width: 80%;
-            opacity: 0.6;
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+            filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.6));
         }
 
         .bg-pattern {
@@ -152,614 +153,379 @@
             background-size: 20px 20px;
         }
 
-        .fun-icon {
-            transition: all 0.3s ease;
-        }
-
-        .fun-icon:hover {
-            transform: scale(1.1) rotate(5deg);
-            filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.6));
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #1e293b;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #475569;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #64748b;
-        }
-
-        .glow-border {
-            position: relative;
-        }
-
-        .glow-border::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            padding: 1px;
+        .gradient-divider {
+            height: 3px;
             background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0.5;
-            pointer-events: none;
+            margin: 2rem auto;
+            width: 200px;
+            opacity: 0.8;
+            border-radius: 2px;
         }
 
         @keyframes neon-glow {
             0%, 100% {
-                filter: drop-shadow(0 0 5px #FF5733) drop-shadow(0 0 10px #FF33A1);
+                filter: drop-shadow(0 0 8px #FF5733) drop-shadow(0 0 15px #FF33A1);
                 opacity: 0.9;
             }
             50% {
-                filter: drop-shadow(0 0 12px #C433FF) drop-shadow(0 0 20px #33B5FF);
+                filter: drop-shadow(0 0 20px #C433FF) drop-shadow(0 0 30px #33B5FF);
                 opacity: 1;
             }
         }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .fade-in-up-delay {
+            animation: fadeInUp 1.2s ease-out 0.4s both;
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 1s ease-out 0.6s both;
+        }
+
+        .slide-in-right {
+            animation: slideInRight 1s ease-out 0.8s both;
+        }
+
+        .pulse-animation {
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .coming-soon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--dark), var(--darker));
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.8s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-transition.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .transition-logo {
+            width: 200px;
+            height: 100px;
+            animation: transitionPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes transitionPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+        }
+
+        .fade-out {
+            animation: fadeOut 0.6s ease-in-out forwards;
+        }
     </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 w-full bg-dark bg-opacity-90 backdrop-blur-md shadow-lg z-50">
-        <div class="container mx-auto px-8 py-4">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                    <img class="logoNav" src="assets/hhSymbol.svg" alt="Hulahoop Logo">
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="font-medium text-gray-300 hover:text-primary transition-all">Home</a>
-                    <a href="#services" class="font-medium text-gray-300 hover:text-primary transition-all">Services</a>
-                    <a href="#portfolio" class="font-medium text-gray-300 hover:text-primary transition-all">Portfolio</a>
-                    <a href="#contact" class="font-medium text-gray-300 hover:text-primary transition-all">Contact</a>
-                </div>
-                <div class="md:hidden">
-                    <button id="menu-toggle" class="text-gray-300 focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
+<body class="bg-pattern">
+    <!-- Particles Background -->
+    <div class="particles"></div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-darker z-50 p-5 shadow-lg transform translate-x-full transition-transform duration-300">
-        <div class="flex justify-end">
-            <button id="close-menu" class="text-gray-300 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-        </div>
-        <div class="flex flex-col space-y-6 mt-10">
-            <a href="#home" class="font-medium text-gray-300 hover:text-primary transition-all py-2">Home</a>
-            <a href="#services" class="font-medium text-gray-300 hover:text-primary transition-all py-2">Services</a>
-            <a href="#portfolio" class="font-medium text-gray-300 hover:text-primary transition-all py-2">Portfolio</a>
-            <a href="#contact" class="font-medium text-gray-300 hover:text-primary transition-all py-2">Contact</a>
-        </div>
+    <!-- Page Transition Overlay -->
+    <div class="page-transition" id="pageTransition">
+        <img class="transition-logo" src="assets/HHLogo.svg" alt="Loading...">
     </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center pt-20 bg-pattern">
-        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0" style="opacity:0.2;">
-            <source src="assets/bgVideo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="container mx-auto px-4 py-20 relative overflow-hidden">
-        
-        <div class="relative z-10">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
-                        Innovative <span class="neon-text">Digital</span> Solutions for Your Business
-                    </h1>
-                    <p class="text-lg text-gray-300 mb-8 max-w-lg">
-                        We combine cutting-edge technology with creative expertise to deliver exceptional digital experiences that drive results.
+    <!-- Main Container -->
+    <div class="min-h-screen flex items-center justify-center px-6 py-16 relative z-10" id="mainContent">
+        <div class="max-w-7xl mx-auto text-center">
+            <!-- Logo -->
+            <div class="mb-16 fade-in-up">
+                <img class="logo mx-auto pulse-animation" src="assets/HHLogo.svg" alt="Hulahoop Logo">
+            </div>
+
+            <!-- Welcome Message -->
+            <div class="mb-20 fade-in-up-delay">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-8 leading-tight">
+                    Welcome to <span class="neon-text">Hulahoop</span>
+                </h1>
+                <div class="gradient-divider"></div>
+                <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mt-8">
+                    Your gateway to innovative digital solutions. Choose your path and let us transform your vision into reality.
+                </p>
+            </div>
+
+            <!-- Service Options -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
+                <!-- Digital Marketing -->
+                <div class="service-card active rounded-3xl p-10 h-96 flex flex-col justify-center items-center relative slide-in-left" onclick="navigateToMain()">
+                    <div class="service-icon w-20 h-20 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold mb-4 text-white">Digital Marketing</h3>
+                    <p class="text-gray-300 text-center leading-relaxed">
+                        Strategic marketing solutions to boost your online presence and drive targeted growth.
                     </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#services" class="gradient-btn px-8 py-3 rounded-lg font-medium">Our Services</a>
-                        <a href="#contact" class="border border-primary text-primary px-8 py-3 rounded-lg font-medium hover:bg-primary hover:text-white transition-all">Get in Touch</a>
+                    <div class="mt-6">
+                        <span class="inline-flex items-center text-primary font-medium">
+                            Explore Now
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </span>
                     </div>
                 </div>
-                <div class="md:w-1/2">
-                    <div class="relative">
-                        <div class="svg-container">
-                            <img class="logo" id="hh-logo" src="assets/HHLogo.svg" alt="HH Logo">
+
+                <!-- Event Management -->
+                <div class="service-card inactive rounded-3xl p-10 h-96 flex flex-col justify-center items-center relative fade-in-up-delay">
+                    <div class="coming-soon">Coming Soon</div>
+                    <div class="service-icon w-20 h-20 bg-secondary bg-opacity-20 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold mb-4 text-white">Event Management</h3>
+                    <p class="text-gray-300 text-center leading-relaxed">
+                        Comprehensive event planning and management services for memorable experiences.
+                    </p>
+                    <div class="mt-6">
+                        <span class="inline-flex items-center text-gray-500 font-medium">
+                            Coming Soon
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </span>
                     </div>
                 </div>
+
+                <!-- Collaborations -->
+                <div class="service-card inactive rounded-3xl p-10 h-96 flex flex-col justify-center items-center relative slide-in-right">
+                    <div class="coming-soon">Coming Soon</div>
+                    <div class="service-icon w-20 h-20 bg-accent bg-opacity-20 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold mb-4 text-white">Collaborations</h3>
+                    <p class="text-gray-300 text-center leading-relaxed">
+                        Strategic partnerships and collaborative opportunities to expand your reach.
+                    </p>
+                    <div class="mt-6">
+                        <span class="inline-flex items-center text-gray-500 font-medium">
+                            Coming Soon
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Message -->
+            <div class="mt-20 fade-in-up-delay">
+                <p class="text-gray-400 text-lg">
+                    Ready to transform your business? Choose your service above to get started.
+                </p>
             </div>
         </div>
     </div>
-    </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-20 bg-dark">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
-                    Our <span class="neon-text">Services</span>
-                </h2>
-                <div class="gradient-divider"></div>
-                <p class="mt-6 text-lg text-gray-300 max-w-2xl mx-auto">
-                    We offer a comprehensive range of digital solutions tailored to meet your business objectives and drive growth.
-                </p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="hover-card bg-darker rounded-xl overflow-hidden shadow-md p-6 h-full">
-                    <div class="w-14 h-14 bg-primary bg-opacity-20 rounded-lg flex items-center justify-center mb-6 fun-icon">
-                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-heading font-semibold mb-3 text-white">Web Development</h3>
-                    <p class="text-gray-700 mb-6">Custom websites and web applications built with the latest technologies to deliver exceptional user experiences.</p>
-                    <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
-                        Learn More
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                        </svg>
-                    </a>
-                </div>
-                <div class="hover-card bg-darker rounded-xl shadow-md p-6 h-full">
-                    <div class="w-14 h-14 bg-secondary bg-opacity-20 rounded-lg flex items-center justify-center mb-6 fun-icon">
-                        <svg class="w-8 h-8 text-secondary" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-heading font-semibold mb-3 text-white">UI/UX Design</h3>
-                    <p class="text-gray-700 mb-6">Intuitive and visually appealing interfaces designed to enhance user engagement and satisfaction.</p>
-                    <a href="#" class="inline-flex items-center text-secondary font-medium hover:underline">
-                        Learn More
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                        </svg>
-                    </a>
-                </div>
-                <div class="hover-card bg-darker rounded-xl shadow-md p-6 h-full">
-                    <div class="w-14 h-14 bg-accent bg-opacity-20 rounded-lg flex items-center justify-center mb-6 fun-icon">
-                        <svg class="w-8 h-8 text-accent" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-heading font-semibold mb-3 text-white">Digital Marketing</h3>
-                    <p class="text-gray-700 mb-6">Strategic marketing solutions to increase your online presence and drive targeted traffic to your business.</p>
-                    <a href="#" class="inline-flex items-center text-accent font-medium hover:underline">
-                        Learn More
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                        </svg>
-                    </a>
-                </div>
-                <div class="hover-card bg-darker rounded-xl shadow-md p-6 h-full">
-                    <div class="w-14 h-14 bg-primary bg-opacity-20 rounded-lg flex items-center justify-center mb-6 fun-icon">
-                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1.12-.38z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-heading font-semibold mb-3 text-white">Performance Optimization</h3>
-                    <p class="text-gray-700 mb-6">Enhance your website's speed and performance to improve user experience and search engine rankings.</p>
-                    <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
-                        Learn More
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7m0 0l-7 7m7-7H3"/>
-                        </svg>
-                    </a>
-                </div>
-                <div class="hover-card bg-darker rounded-xl shadow-md p-6 h-full">
-                    <div class="w-14 h-14 bg-secondary bg-opacity-20 rounded-lg flex items-center justify-center mb-6 fun-icon">
-                        <svg class="w-8 h-8 text-secondary" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-heading font-semibold mb-3 text-white">E-commerce Solutions</h3>
-                    <p class="text-gray-700 mb-6">Custom online stores and e-commerce platforms designed to maximize sales and streamline operations.</p>
-                    <a href="#" class="inline-flex items-center text-secondary font-medium hover:underline">
-                        Learn More
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                        </svg>
-                    </a>
-                </div>
-                <div class="hover-card bg-darker rounded-xl shadow-md p-6 h-full">
-                    <div class="w-14 h-14 bg-accent bg-opacity-20 rounded-lg flex items-center justify-center mb-6 fun-icon">
-                        <svg class="w-8 h-8 text-accent" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1l3 3a1 0 010 1.414l-3 3a1-1.414-1L7.586 10 5.293 7.707a1l3 3a0 1.414 0zM11 12a1 0 100 2h3a1 0 100-2h-3z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-heading font-semibold mb-3 text-white">Custom Software Development</h3>
-                    <p class="text-gray-700 mb-6">Tailored software solutions designed to address your specific business challenges and requirements.</p>
-                    <a href="#" class="inline-flex items-center text-accent font-medium hover:underline">
-                        Learn More
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20 bg-pattern">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
-                    Our <span class="neon-text">Portfolio</span>
-                </h2>
-                <div class="gradient-divider"></div>
-                <p class="mt-6 text-lg text-gray-300 max-w-2xl mx-auto">
-                    Explore our recent projects and see how we've helped businesses achieve their digital goals.
-                </p>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="hover-card bg-darker rounded-xl overflow-hidden shadow-md">
-                    <div class="relative">
-                        <div class="bg-gradient-to-br from-primary to-secondary aspect-video flex items-center justify-center">
-                            <svg class="w-24 h-24 text-white opacity-80 fun-icon" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"/>
-                            </svg>
-                        </div>
-                        <span class="absolute top-4 left-4 bg-darker bg-opacity-90 rounded-lg px-3 py-1 text-sm font-medium text-primary">Web Design</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-heading font-semibold mb-2 text-white">Modern E-commerce Platform</h3>
-                        <p class="text-gray-700 mb-4">A comprehensive online shopping experience with advanced features and seamless checkout process.</p>
-                        <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
-                            View Project
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7 0 0l-7 7m7-7H3"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="hover-card bg-darker rounded-xl overflow-hidden shadow-md">
-                    <div class="relative">
-                        <div class="bg-gradient-to-br from-secondary to-accent aspect-video flex items-center justify-center">
-                            <svg class="w-24 h-24 text-white opacity-80 fun-icon" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z"/>
-                            </svg>
-                            <span class="absolute top-4 left-4 bg-darker bg-opacity-90 rounded-lg px-3 py-1 text-sm font-medium text-secondary">Mobile App</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-heading font-semibold mb-2 text-white">Health & Fitness Tracker</h3>
-                        <p class="text-gray-700 mb-4">A mobile application designed to help users track their fitness goals and maintain healthy habits.</p>
-                        <a href="#" class="inline-flex items-center text-secondary font-medium hover:underline">
-                            View Project
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="hover-card bg-darker rounded-xl overflow-hidden shadow-md">
-                    <div class="relative">
-                        <div class="bg-gradient-to-br from-accent to-primary aspect-video flex items-center justify-center">
-                            <svg class="w-24 h-24 text-white opacity-80 fun-icon" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z"/>
-                            </svg>
-                            <span class="absolute top-4 left-4 bg-darker bg-opacity-90 rounded-lg px-3 py-1 text-sm font-medium text-accent">Dashboard</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-heading font-semibold mb-2 text-white">Analytics Dashboard</h3>
-                        <p class="text-gray-700 mb-4">A comprehensive data visualization platform providing real-time insights and actionable analytics.</p>
-                        <a href="#" class="inline-flex items-center text-accent font-medium hover:underline">
-                            View Project
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="hover-card bg-darker rounded-xl overflow-hidden shadow-md">
-                    <div class="relative">
-                        <div class="bg-gradient-to-br from-primary to-accent aspect-video flex items-center justify-center">
-                            <svg class="w-24 h-24 text-white opacity-80 fun-icon" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"/>
-                            </svg>
-                            <span class="absolute top-4 left-4 bg-darker bg-opacity-90 rounded-lg px-3 py-1 text-sm font-medium text-primary">Content Management</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-heading font-semibold mb-2 text-white">Educational Platform</h3>
-                        <p class="text-gray-700 mb-4">A comprehensive learning management system for educational institutions with advanced features.</p>
-                        <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
-                            View Project
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="hover-card bg-darker rounded-xl overflow-hidden shadow-md">
-                    <div class="relative">
-                        <div class="bg-gradient-to-br from-secondary to-primary aspect-video flex items-center justify-center">
-                            <svg class="w-24 h-24 text-white opacity-80 fun-icon" fill="currentColor" viewBox="0 0 20">
-                                <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 0 0 000-2H6.414l1-1H14a1 0 00.894-.553l3-6A1 0 0017 3H6.28l-.311.243A1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
-                            </svg>
-                            <span class="absolute top-4 left-4 bg-darker bg-opacity-90 rounded-lg px-3 py-1 text-sm font-medium text-secondary">E-commerce</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-heading font-semibold mb-2 text-white">Luxury Brand Store</h3>
-                        <p class="text-gray-700 mb-4">A premium online shopping experience for a high-end fashion brand with immersive product showcases.</p>
-                        <a href="#" class="inline-flex items-center text-secondary font-medium hover:underline">
-                            View Project
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="hover-card bg-darker rounded-xl overflow-hidden shadow-md">
-                    <div class="relative">
-                        <div class="bg-gradient-to-br from-accent to-secondary aspect-video flex items-center justify-center">
-                            <svg class="w-24 h-24 text-white opacity-80 fun-icon" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"/>
-                            </svg>
-                            <span class="absolute top-4 left-4 bg-darker bg-opacity-90 rounded-lg px-3 py-1 text-sm font-medium text-accent">Media Platform</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-heading font-semibold mb-2 text-white">Video Streaming Service</h3>
-                        <p class="text-gray-700 mb-4">A high-performance video streaming platform with personalized content recommendations.</p>
-                        <a href="#" class="inline-flex items-center text-accent font-medium hover:underline">
-                            View Project
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-12">
-                <a href="#" class="gradient-btn px-8 py-3 rounded-lg font-medium">View All Projects</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="py-20 bg-dark">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
-                    Client <span class="neon-text">Testimonials</span>
-                </h2>
-                <div class="gradient-divider"></div>
-                <p class="mt-6 text-lg text-gray-300 max-w-2xl mx-auto">
-                    Don't just take our word for it. Here's what our clients have to say about working with us.
-                </p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="hover-card bg-darker rounded-xl shadow-md p-6 h-full">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 rounded-full bg-primary bg-opacity-20 flex items-center justify-center mr-4">
-                            <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4 class="font-heading font-semibold text-white">Sarah Johnson</h4>
-                            <p class="text-sm text-gray-400">CEO, TechStart Inc.</p>
-                        </div>
-                    </div>
-                    <div class="mb-4 flex text-yellow-400">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="..."/></svg>
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="..."/></svg>
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="..."/></svg>
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="..."/></svg>
-                    </div>
-                    <p class="text-gray-300 italic">"Digital Solutions transformed our online presence completely. Their team delivered a website that not only looks stunning but also performs exceptionally well. The increase in user engagement and conversions has been remarkable."</p>
-                </div>
-                <div class="hover-card bg-darker rounded-xl shadow-md p-6 h-full">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 rounded-full bg-secondary bg-opacity-20 flex items-center justify-center mr-4">
-                            <svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4 class="font-heading font-semibold text-white">Michael Chen</h4>
-                            <p class="text-sm text-gray-400">Marketing Director, Retail Innovations</p>
-                        </div>
-                    </div>
-                    <div class="mb-4 flex text-yellow-400">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="..."/></svg>
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="..."/></svg>
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="..."/></svg>
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="..."/></svg>
-                    </div>
-                    <p class="text-gray-300 italic">"Working with Digital Solutions on our e-commerce platform was a game-changer. Their attention to detail and focus on user experience resulted in a 40% increase in our conversion rate. Highly recommended!"</p>
-                </div>
-                <div class="hover-card bg-darker rounded-xl shadow-md p-6 h-full">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 rounded-full bg-accent bg-opacity-20 flex items-center justify-center mr-4">
-                            <svg class="w-6 h-6 text-accent" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4 class="font-heading font-semibold text-white">Emily Rodriguez</h4>
-                            <p class="text-sm text-gray-400">Founder, Creative Studios</p>
-                        </div>
-                    </div>
-                    <div class="mb-4 flex text-yellow-400">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="..."/></svg>
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="..."/></svg>
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="..."/></svg>
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="..."/></svg>
-                    </div>
-                    <p class="text-gray-300 italic">"The team at Digital Solutions exceeded our expectations in every way. Their creative approach to problem-solving and technical expertise helped us launch our platform ahead of schedule and under budget."</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-pattern">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">
-                    Get in <span class="neon-text">Touch</span>
-                </h2>
-                <div class="gradient-divider"></div>
-                <p class="mt-6 text-lg text-gray-300 max-w-2xl mx-auto">
-                    Ready to transform your digital presence? Contact us today to discuss your project and discover how we can help you achieve your goals.
-                </p>
-            </div>
-            <div class="flex flex-col md:flex-row gap-6">
-                <div class="md:w-1/2">
-                    <div class="bg-darker rounded-xl p-8 shadow-md h-full glow-border">
-                        <h3 class="text-2xl font-heading font-bold mb-6 text-white">Send Us a Message</h3>
-                        <form>
-                            <div class="mb-6">
-                                <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Your Name</label>
-                                <input type="text" id="name" class="w-full bg-dark border border-gray-700 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-white" placeholder="Enter your name">
-                            </div>
-                            <div class="mb-6">
-                                <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
-                                <input type="email" id="email" class="w-full bg-dark border border-gray-700 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-white" placeholder="Enter your email">
-                            </div>
-                            <div class="mb-6">
-                                <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Your Message</label>
-                                <textarea id="message" rows="5" class="w-full bg-dark border border-gray-700 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-white" placeholder="How can we help you?"></textarea>
-                            </div>
-                            <button type="submit" class="gradient-btn w-full py-3 rounded-lg font-medium">Send Message</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="md:w-1/2">
-                    <div class="bg-darker rounded-xl p-8 shadow-md h-full glow-border">
-                        <h3 class="text-2xl font-heading font-bold mb-6 text-white">Contact Information</h3>
-                        <div class="mb-8">
-                            <div class="flex items-start mb-6">
-                                <div class="w-10 h-10 rounded-lg bg-primary bg-opacity-20 flex items-center justify-center mr-4 fun-icon">
-                                    <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 class="font-heading font-semibold mb-1 text-white">Our Location</h4>
-                                    <p class="text-gray-300">Lot 1221-B, Kg Sg Balak, Batu 13,</p>
-                                    <p class="text-gray-300">Jalan Cheras, 43000 Kajang,</p>
-                                    <p class="text-gray-300">Selangor Darul Ehsan, Malaysia.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start mb-6">
-                                <div class="w-10 h-10 rounded-lg bg-secondary bg-opacity-20 flex items-center justify-center mr-4 fun-icon">
-                                    <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 class="font-heading font-semibold mb-1 text-white">Contact Details</h4>
-                                    <p class="text-gray-300">Phone: +60 345-6789</p>
-                                    <p class="text-gray-300">Email: info@hulahoopkl.com</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-lg bg-accent bg-opacity-20 flex items-center justify-center mr-4 fun-icon">
-                                    <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 24 24">
-                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 class="font-heading font-semibold mb-1 text-white">Business Hours</h4>
-                                    <p class="text-gray-300">Monday - Friday: 9:00 AM - 6:00 PM</p>
-                                    <p class="text-gray-300">Saturday: 10:00 AM - 2:00 PM</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 class="font-heading font-semibold mb-4 text-white">Connect With Us</h4>
-                            <div class="flex space-x-4">
-                                <a href="#" class="w-10 h-10 rounded-lg bg-dark flex items-center justify-center hover:bg-primary hover:text-white transition-all fun-icon">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"/>
-                                    </svg>
-                                </a>
-                                <a href="#" class="w-10 h-10 rounded-lg bg-dark flex items-center justify-center hover:bg-primary hover:text-white transition-all fun-icon">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.5 1.5 0 11-2.121 2.121 1.5 1.5 0 012.121-2.121zM4.594 4.155a1.5 1.5 0 11-2.121-2.121 1.5 1.5 0 012.121 2.121z"/>
-                                    </svg>
-                                </a>
-                                <a href="#" class="w-10 h-10 rounded-lg bg-dark flex items-center justify-center hover:bg-primary hover:text-white transition-all fun-icon">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-2.723 0-4.928 2.206-4.928 4.928 0 .386.044.763.127 1.124C7.691 8.095 4.066 6.13 1.64 3.161c-.423.722-.666 1.561-.666 2.475 0 1.708.87 3.216 2.188 4.099-.807-.026-1.566-.247-2.228-.616v.062c0 2.385 1.693 4.374 3.946 4.827-.413.112-.849.171-1.296.171-.317 0-.626-.03-.928-.086.627 1.956 2.444 3.377 4.6 3.417-1.68 1.318-3.808 2.104-6.102 2.104-.397 0-.788-.023-1.175-.069 2.179 1.397 4.768 2.213 7.557 2.213 9.054 0 14.002-7.496 14.002-13.986 0-.21 0-.423-.016-.634.962-.693 1.797-1.562 2.457-2.549z"/>
-                                    </svg>
-                                </a>
-                                <a href="#" class="w-10 h-10 rounded-lg bg-dark flex items-center justify-center hover:bg-primary hover:text-white transition-all fun-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tiktok" viewBox="0 0 16 16">
-                                    <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z"/>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-8 bg-darker text-center text-gray-400 text-sm">
-        <div class="container mx-auto px-4">
-            © 2025 Hulahoop Creative Marketing. All rights reserved.
-        </div>
-    </footer>
-
-    <!-- Mobile Menu Script -->
     <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeMenu = document.getElementById('close-menu');
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            const particleCount = 50;
 
-        menuToggle.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
-        closeMenu.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
-        document.addEventListener('click', (e) => {
-            if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-                mobileMenu.classList.add('translate-x-full');
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random starting position
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (8 + Math.random() * 4) + 's';
+                
+                // Random size variation
+                const size = 2 + Math.random() * 4;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                particlesContainer.appendChild(particle);
             }
+        }
+
+        // Page transition function
+        function navigateToMain() {
+            const mainContent = document.getElementById('mainContent');
+            const pageTransition = document.getElementById('pageTransition');
+            
+            // Add fade out animation to main content
+            mainContent.classList.add('fade-out');
+            
+            // Show transition overlay
+            setTimeout(() => {
+                pageTransition.classList.add('active');
+            }, 300);
+            
+            // Navigate to main.html after animation
+            setTimeout(() => {
+                window.location.href = 'main.html';
+            }, 1200);
+        }
+
+        // Add click effect for active cards (removed direct navigation)
+        document.querySelectorAll('.service-card.active').forEach(card => {
+            card.addEventListener('click', function() {
+                // Add a subtle click animation
+                this.style.transform = 'translateY(-5px) scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
         });
 
-        const svg = document.getElementById('hh-logo');
-        const container = document.querySelector('.svg-container');
-
-        container.addEventListener('mousemove', (e) => {
-        const rect = svg.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        // Calculate mouse position relative to SVG center
-        const mouseX = e.clientX - centerX;
-        const mouseY = e.clientY - centerY;
-
-        // Normalize rotation angles based on mouse position
-        const maxAngle = 20; // Max tilt angle in degrees
-        const rotateY = (mouseX / rect.width) * maxAngle;
-        const rotateX = -(mouseY / rect.height) * maxAngle;
-
-        // Apply 3D transform
-        svg.style.transform = `perspective(500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.1)`;
+        // Prevent clicks on inactive cards
+        document.querySelectorAll('.service-card.inactive').forEach(card => {
+            card.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            });
         });
 
-        // Reset transform when mouse leaves
-        container.addEventListener('mouseleave', () => {
-        svg.style.transform = 'perspective(500px) rotateX(0deg) rotateY(0deg) scale(1)';
-        svg.style.filter = 'none';
+        // Enhanced hover effects for service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('inactive')) {
+                    this.style.transform = 'translateY(-15px) scale(1.03)';
+                }
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('inactive')) {
+                    this.style.transform = '';
+                }
+            });
+        });
+
+        // Initialize particles when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            // Add staggered animation to service cards
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = (0.6 + index * 0.2) + 's';
+            });
+        });
+
+        // Add parallax effect to logo on scroll
+        window.addEventListener('scroll', function() {
+            const logo = document.querySelector('.logo');
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            logo.style.transform = `translateY(${rate}px)`;
         });
     </script>
 </body>
